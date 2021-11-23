@@ -1,4 +1,5 @@
 import boto3
+import os
 
 cf = boto3.client('cloudformation')
 
@@ -7,7 +8,7 @@ cf = boto3.client('cloudformation')
 """
 def get_aws_stack_secrets():
     response = cf.list_stack_resources(
-        StackName='your_stack_name',
+        StackName=os.environ['secretStack'],
     )
 
     resources = response['StackResourceSummaries']
